@@ -11,8 +11,8 @@ Amount is 5.5
 You earned 2 loyalty points
 ```
 
-The guy that developed this feature left the company. And your boss told you to implement a new feature: he wants 
-the application to be able to display the lease statement in HTML:
+The developer who originally built this feature is no longer with the company. Your manager has now asked for a new feature to be implemented:
+In addition to the existing functionality, the application should now also be able to display the lease statement in HTML format.
 
 ```
 <h1>Games leased by <em>Martin</em></h1>
