@@ -1,3 +1,6 @@
+# Rules of engagement
+**Please fork this repository to your own GitHub account, implement your solution in your fork, and submit a Pull Request against the main branch of this repository.**
+
 # Game Lease
 
 You are working in a company that developed a very simple games lease application.
@@ -37,3 +40,8 @@ Unit tests can be run using maven[1]:
     $ mvn test
 
 Tests are located in the test directory and run using Junit.
+
+## Reviewers
+
+You can find some clues of what is expected on 
+[confluence page](https://karrostech.atlassian.net/wiki/pages/resumedraft.action?draftId=4512448542&draftShareId=84056b40-c226-47d9-b8f7-de8b72e3af7a)
