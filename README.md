@@ -1,4 +1,4 @@
-# Game Lease
+# Game Lease test
 
 You are working in a company that developed a very simple games lease application.
 There is an already existing feature, which is to display, in text format, the output of a lease statement:
