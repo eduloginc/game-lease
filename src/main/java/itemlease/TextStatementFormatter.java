@@ -1,10 +1,12 @@
 package itemlease;
 
 public class TextStatementFormatter implements StatementFormatter {
+    
     @Override
     public String format(Customer customer) {
-        double totalAmount = 0;
-        int nbLoyaltyPoints = 0;
+
+        StatementModel statementModel = new StatementModel(0, 0);
+
         StringBuilder result = new StringBuilder("Games leased by " + customer.getName() + "\n");
 
         for (Lease each : customer.getLeases()) {
@@ -24,14 +26,14 @@ public class TextStatementFormatter implements StatementFormatter {
                         thisAmount += (each.getDaysLeased() - 3) * 1.5;
                     break;
             }
-            nbLoyaltyPoints++;
+            statementModel.setNbLoyaltyPoints(statementModel.getNbLoyaltyPoints() + 1);
             if ((each.getGame().getPriceCode() == LeaseItem.NEWLY_RELEASED) && each.getDaysLeased() > 1)
-                nbLoyaltyPoints++;
+                statementModel.setNbLoyaltyPoints(statementModel.getNbLoyaltyPoints() + 1);
             result.append("\t").append(each.getGame().getTitle()).append("\t").append(thisAmount).append("\n");
-            totalAmount += thisAmount;
+            statementModel.setTotalAmount(statementModel.getTotalAmount() + thisAmount);
         }
-        result.append("Amount is ").append(totalAmount).append("\n");
-        result.append("You earned ").append(nbLoyaltyPoints).append(" loyalty points");
+        result.append("Amount is ").append(statementModel.getTotalAmount()).append("\n");
+        result.append("You earned ").append(statementModel.getNbLoyaltyPoints()).append(" loyalty points");
         return result.toString();
     }
 }
