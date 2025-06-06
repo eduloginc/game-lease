@@ -1,4 +1,7 @@
-package itemlease;
+package itemlease.statement;
+
+import itemlease.Customer;
+import itemlease.Lease;
 
 public class TextStatementFormatter implements StatementFormatter {
 
@@ -9,9 +12,9 @@ public class TextStatementFormatter implements StatementFormatter {
 
         StringBuilder result = new StringBuilder("Games leased by " + customer.getName() + "\n");
 
-        for (Lease each : customer.getLeases()) {
-            double amount = statementModel.addLeaseAndReturnAmountAdded(each);
-            result.append("\t").append(each.getGame().getTitle()).append("\t").append(amount).append("\n");
+        for (Lease lease : customer.getLeases()) {
+            double amount = statementModel.addLeaseAndReturnAmountAdded(lease);
+            result.append("\t").append(lease.getGame().getTitle()).append("\t").append(amount).append("\n");
         }
         result.append("Amount is ").append(statementModel.getTotalAmount()).append("\n");
         result.append("You earned ").append(statementModel.getNbLoyaltyPoints()).append(" loyalty points");

@@ -1,5 +1,8 @@
 package itemlease;
 
+import itemlease.statement.StatementFormatter;
+import itemlease.statement.TextStatementFormatter;
+
 import java.util.ArrayList;
 import java.util.List;
 
