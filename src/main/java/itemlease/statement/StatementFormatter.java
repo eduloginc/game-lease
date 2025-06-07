@@ -5,8 +5,7 @@ import itemlease.Lease;
 
 public abstract class StatementFormatter {
 
-    protected final Statement statement
-            ;
+    protected final Statement statement;
     protected final StringBuilder result;
 
     public StatementFormatter() {
