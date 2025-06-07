@@ -21,13 +21,15 @@ public abstract class StatementFormatter {
     protected abstract String header(Customer customer);
 
     protected String formatLeases(Customer customer) {
-        StringBuilder leasesResult = new StringBuilder();
-        for (Lease lease : customer.getLeases()) {
-            double amount = statementModel.addLeaseAndReturnAmountAdded(lease);
-            String row = formatLeaseRow(lease, amount);
-            leasesResult.append(row);
-        }
-        return leasesResult.toString();
+        return customer.getLeases().stream().reduce(
+                new StringBuilder(),
+                (leasesResult, lease) -> {
+                    double amount = statementModel.addLeaseAndReturnAmountAdded(lease);
+                    leasesResult.append(formatLeaseRow(lease, amount));
+                    return leasesResult;
+                },
+                StringBuilder::append
+            ).toString();
     }
 
     protected abstract String formatLeaseRow(Lease lease, double amount);
