@@ -1,7 +1,7 @@
 package itemlease;
 import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
 
+import itemlease.statement.HtmlStatementFormatter;
 import org.junit.Test;
 
 public class CustomerTest {
@@ -28,5 +28,21 @@ public class CustomerTest {
                 "You earned 7 loyalty points";
 
         assertEquals(expected, customer.statement());
+    }
+
+    @Test
+    public void testHtmlStatement() {
+        Customer customer = new Customer("Martin");
+        customer.addLease(new Lease(new LeaseItem("The Brain", LeaseItem.REGULAR), 3));
+        customer.addLease(new Lease(new LeaseItem("Virus of the mind", LeaseItem.REGULAR), 2));
+        String expected = "" +
+                "<h1>Games leased by <em>Martin</em></h1>\n" +
+                "<table>\n" +
+                "    <tr><td>The Brain</td><td>3.5</td></tr>\n" +
+                "    <tr><td>Virus of the mind</td><td>2.0</td></tr>\n" +
+                "</table>\n" +
+                "<p>Amount is <em>5.5</em></p>\n" +
+                "<p>You earned <em>2</em> loyalty points</p>\n";
+        assertEquals(expected, customer.statement(new HtmlStatementFormatter()));
     }
 }
