@@ -3,11 +3,11 @@ package itemlease.statement;
 import itemlease.Lease;
 import itemlease.LeaseItem;
 
-public class StatementModel {
+public class Statement {
     private double totalAmount;
     private int nbLoyaltyPoints;
 
-    public StatementModel(double totalAmount, int nbLoyaltyPoints) {
+    public Statement(double totalAmount, int nbLoyaltyPoints) {
         this.totalAmount = totalAmount;
         this.nbLoyaltyPoints = nbLoyaltyPoints;
     }

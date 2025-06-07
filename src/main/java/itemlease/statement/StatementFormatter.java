@@ -5,14 +5,17 @@ import itemlease.Lease;
 
 public abstract class StatementFormatter {
 
-    protected final StatementModel statementModel;
+    protected final Statement statement
+            ;
+    protected final StringBuilder result;
 
     public StatementFormatter() {
-        this.statementModel = new StatementModel(0, 0);
+        this.statement = new Statement(0, 0);
+        this.result = new StringBuilder();
     }
 
     public final String format(Customer customer) {
-        StringBuilder result = new StringBuilder(header(customer));
+        result.append(header(customer));
         result.append(formatLeases(customer));
         result.append(footer());
         return result.toString();
@@ -20,16 +23,16 @@ public abstract class StatementFormatter {
 
     protected abstract String header(Customer customer);
 
-    protected String formatLeases(Customer customer) {
+    protected StringBuilder formatLeases(Customer customer) {
         return customer.getLeases().stream().reduce(
                 new StringBuilder(),
                 (leasesResult, lease) -> {
-                    double amount = statementModel.addLeaseAndReturnAmountAdded(lease);
+                    double amount = statement.addLeaseAndReturnAmountAdded(lease);
                     leasesResult.append(formatLeaseRow(lease, amount));
                     return leasesResult;
                 },
                 StringBuilder::append
-            ).toString();
+            );
     }
 
     protected abstract String formatLeaseRow(Lease lease, double amount);

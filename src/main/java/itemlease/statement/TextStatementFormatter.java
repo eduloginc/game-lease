@@ -17,7 +17,8 @@ public class TextStatementFormatter extends StatementFormatter {
 
     @Override
     protected String footer() {
-        return "Amount is " + statementModel.getTotalAmount() + "\n"
-                + "You earned " + statementModel.getNbLoyaltyPoints() + " loyalty points";
+        return ""
+            + "Amount is " + statement.getTotalAmount() + "\n"
+            + "You earned " + statement.getNbLoyaltyPoints() + " loyalty points";
     }
 }

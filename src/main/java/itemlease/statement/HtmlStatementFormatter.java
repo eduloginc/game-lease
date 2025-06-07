@@ -17,8 +17,9 @@ public class HtmlStatementFormatter extends StatementFormatter {
 
     @Override
     protected String footer() {
-        return "</table>\n"
-                + "<p>Amount is <em>" + statementModel.getTotalAmount() + "</em></p>\n"
-                + "<p>You earned <em>" + statementModel.getNbLoyaltyPoints() + "</em> loyalty points</p>\n";
+        return ""
+            + "</table>\n"
+            + "<p>Amount is <em>" + statement.getTotalAmount() + "</em></p>\n"
+            + "<p>You earned <em>" + statement.getNbLoyaltyPoints() + "</em> loyalty points</p>\n";
     }
 }
