@@ -3,21 +3,21 @@ package itemlease.statement;
 import itemlease.Customer;
 import itemlease.Lease;
 
-public class TextStatementFormatter implements StatementFormatter {
+public class TextStatementFormatter extends StatementFormatter {
 
     @Override
-    public String format(Customer customer) {
+    protected String header(Customer customer) {
+        return "Games leased by " + customer.getName() + "\n";
+    }
 
-        StatementModel statementModel = new StatementModel(0, 0);
+    @Override
+    protected String formatLeaseRow(Lease lease, double amount) {
+        return "\t" + lease.getGame().getTitle() + "\t" + amount + "\n";
+    }
 
-        StringBuilder result = new StringBuilder("Games leased by " + customer.getName() + "\n");
-
-        for (Lease lease : customer.getLeases()) {
-            double amount = statementModel.addLeaseAndReturnAmountAdded(lease);
-            result.append("\t").append(lease.getGame().getTitle()).append("\t").append(amount).append("\n");
-        }
-        result.append("Amount is ").append(statementModel.getTotalAmount()).append("\n");
-        result.append("You earned ").append(statementModel.getNbLoyaltyPoints()).append(" loyalty points");
-        return result.toString();
+    @Override
+    protected String footer() {
+        return "Amount is " + statementModel.getTotalAmount() + "\n"
+                + "You earned " + statementModel.getNbLoyaltyPoints() + " loyalty points";
     }
 }
