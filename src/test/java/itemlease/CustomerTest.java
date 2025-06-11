@@ -1,8 +1,11 @@
 package itemlease;
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
 
-import org.junit.Test;
+import com.game.lease.model.Customer;
+import com.game.lease.model.Lease;
+import com.game.lease.model.LeaseItem;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CustomerTest {
 

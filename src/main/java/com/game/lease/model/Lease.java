@@ -1,4 +1,4 @@
-package itemlease;
+package com.game.lease.model;
 
 /**
  * The Lease class represents a customer leasing a game.

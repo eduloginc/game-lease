@@ -1,4 +1,4 @@
-package itemlease;
+package com.game.lease.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,5 +61,51 @@ public class Customer {
         result += "You earned " + String.valueOf(nbLoyaltyPoints) + " loyalty points";
 
         return result;
+    }
+    public String statementHtml() {
+        double totalAmount = 0;
+        int nbLoyaltyPoints = 0;
+        StringBuilder html = new StringBuilder();
+
+        html.append("<h1>Games leased by <em>").append(getName()).append("</em></h1>\n");
+        html.append("<table>\n");
+
+        for (Lease each : _leases) {
+            double thisAmount = 0;
+
+            switch (each.getGame().getPriceCode()) {
+                case LeaseItem.REGULAR:
+                    thisAmount += 2;
+                    if (each.getDaysLeased() > 2)
+                        thisAmount += (each.getDaysLeased() - 2) * 1.5;
+                    break;
+                case LeaseItem.NEWLY_RELEASED:
+                    thisAmount += each.getDaysLeased() * 3;
+                    break;
+                case LeaseItem.CHILDREN:
+                    thisAmount += 1.5;
+                    if (each.getDaysLeased() > 3)
+                        thisAmount += (each.getDaysLeased() - 3) * 1.5;
+                    break;
+            }
+
+            nbLoyaltyPoints++;
+            if ((each.getGame().getPriceCode() == LeaseItem.NEWLY_RELEASED) && each.getDaysLeased() > 1)
+                nbLoyaltyPoints++;
+
+            html.append("  <tr><td>")
+                    .append(each.getGame().getTitle())
+                    .append("</td><td>")
+                    .append(thisAmount)
+                    .append("</td></tr>\n");
+
+            totalAmount += thisAmount;
+        }
+
+        html.append("</table>\n");
+        html.append("<p>Amount is <em>").append(totalAmount).append("</em></p>\n");
+        html.append("<p>You earned <em>").append(nbLoyaltyPoints).append("</em> loyalty points</p>");
+
+        return html.toString();
     }
 }

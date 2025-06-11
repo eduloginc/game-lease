@@ -1,4 +1,4 @@
-package itemlease;
+package com.game.lease.model;
 
 public class LeaseItem {
 
