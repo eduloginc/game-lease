@@ -5,44 +5,41 @@ import java.util.List;
 
 public class Customer {
 
-    private String _name;
-    private List<Lease> _leases = new ArrayList<Lease>();
+    private final String name;
+    private final List<Lease> leases = new ArrayList<>();
 
     public Customer(String name) {
-        _name = name;
+        this.name = name;
     }
 
-    public void addLease(Lease arg) {
-        _leases.add(arg);
+    public void addLease(Lease lease) {
+        leases.add(lease);
     }
 
     public String getName() {
-        return _name;
+        return name;
     }
 
     /**
      * Generates a statement using the provided renderer.
+     *
      * @param renderer The renderer to use for formatting the statement.
      * @return A formatted string statement.
      */
     public String statement(StatementRenderer renderer) {
-        StatementData data = new StatementData(getName(), _leases, getTotalCharge(), getTotalLoyaltyPoints());
+        StatementData data = new StatementData(getName(), leases, getTotalCharge(), getTotalLoyaltyPoints());
         return renderer.render(data);
     }
 
     private double getTotalCharge() {
-        double result = 0;
-        for (Lease each : _leases) {
-            result += each.getCharge();
-        }
-        return result;
+        return leases.stream()
+                .mapToDouble(Lease::getCharge)
+                .sum();
     }
 
     private int getTotalLoyaltyPoints() {
-        int result = 0;
-        for (Lease each : _leases) {
-            result += each.getLoyaltyPoints();
-        }
-        return result;
+        return leases.stream()
+                .mapToInt(Lease::getLoyaltyPoints)
+                .sum();
     }
 }

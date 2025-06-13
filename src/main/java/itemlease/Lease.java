@@ -5,24 +5,25 @@ package itemlease;
  */
 public class Lease {
 
-    private LeaseItem _leaseItem;
-    private int _daysLeased;
+    private LeaseItem leaseItem;
+    private int daysLeased;
 
     public Lease(LeaseItem leaseItem, int daysLeased) {
-        _leaseItem = leaseItem;
-        _daysLeased = daysLeased;
+        this.leaseItem = leaseItem;
+        this.daysLeased = daysLeased;
     }
 
     public int getDaysLeased() {
-        return _daysLeased;
+        return daysLeased;
     }
 
     public LeaseItem getGame() {
-        return _leaseItem;
+        return leaseItem;
     }
 
     /**
      * Calculates the charge for this lease based on the game's price code and lease duration
+     *
      * @return The cost of the lease
      */
     public double getCharge() {
@@ -49,6 +50,7 @@ public class Lease {
 
     /**
      * Calculates the loyalty points earned for this lease
+     *
      * @return The number of loyalty points
      */
     public int getLoyaltyPoints() {

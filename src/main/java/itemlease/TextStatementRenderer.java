@@ -8,12 +8,20 @@ public class TextStatementRenderer implements StatementRenderer {
 
     @Override
     public String render(StatementData data) {
-        String result = "Games leased by " + data.getCustomerName() + "\n";
+        StringBuilder result = new StringBuilder("Games leased by " + data.getCustomerName() + "\n");
         for (Lease each : data.getLeases()) {
-            result += "\t" + each.getGame().getTitle() + "\t" + each.getCharge() + "\n";
+            result.append("\t")
+                    .append(each.getGame().getTitle())
+                    .append("\t")
+                    .append(each.getCharge())
+                    .append("\n");
         }
-        result += "Amount is " + data.getTotalAmount() + "\n";
-        result += "You earned " + data.getLoyaltyPoints() + " loyalty points";
-        return result;
+        result.append("Amount is ")
+                .append(data.getTotalAmount())
+                .append("\n")
+                .append("You earned ")
+                .append(data.getLoyaltyPoints())
+                .append(" loyalty points");
+        return result.toString();
     }
 }
