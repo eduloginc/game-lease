@@ -20,46 +20,29 @@ public class Customer {
         return _name;
     }
 
-    public String statement() {
-        double totalAmount = 0;
-        int nbLoyaltyPoints = 0;
-        String result = "Games leased by " + getName() + "\n";
+    /**
+     * Generates a statement using the provided renderer.
+     * @param renderer The renderer to use for formatting the statement.
+     * @return A formatted string statement.
+     */
+    public String statement(StatementRenderer renderer) {
+        StatementData data = new StatementData(getName(), _leases, getTotalCharge(), getTotalLoyaltyPoints());
+        return renderer.render(data);
+    }
 
+    private double getTotalCharge() {
+        double result = 0;
         for (Lease each : _leases) {
-            double thisAmount = 0;
-
-            //determine amounts for each line
-            switch (each.getGame().getPriceCode()) {
-                case LeaseItem.REGULAR:
-                    thisAmount += 2;
-                    if (each.getDaysLeased() > 2)
-                        thisAmount += (each.getDaysLeased() - 2) * 1.5;
-                    break;
-                case LeaseItem.NEWLY_RELEASED:
-                    thisAmount += each.getDaysLeased() * 3;
-                    break;
-                case LeaseItem.CHILDREN:
-                    thisAmount += 1.5;
-                    if (each.getDaysLeased() > 3)
-                        thisAmount += (each.getDaysLeased() - 3) * 1.5;
-                    break;
-            }
-
-            // add loyalty points
-            nbLoyaltyPoints++;
-            // add bonus for a two day famous lease
-            if ((each.getGame().getPriceCode() == LeaseItem.NEWLY_RELEASED) && each.getDaysLeased() > 1)
-                nbLoyaltyPoints++;
-
-            // show figures for this lease
-            result += "\t" + each.getGame().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
-            totalAmount += thisAmount;
+            result += each.getCharge();
         }
+        return result;
+    }
 
-        // add footer lines
-        result += "Amount is " + String.valueOf(totalAmount) + "\n";
-        result += "You earned " + String.valueOf(nbLoyaltyPoints) + " loyalty points";
-
+    private int getTotalLoyaltyPoints() {
+        int result = 0;
+        for (Lease each : _leases) {
+            result += each.getLoyaltyPoints();
+        }
         return result;
     }
 }
