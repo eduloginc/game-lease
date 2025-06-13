@@ -1,4 +1,6 @@
-package itemlease;
+package itemlease.renderer;
+
+import itemlease.Lease;
 
 import java.util.List;
 

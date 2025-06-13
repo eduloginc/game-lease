@@ -1,5 +1,8 @@
 package itemlease;
 
+import itemlease.renderer.StatementData;
+import itemlease.renderer.StatementRenderer;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,5 +1,7 @@
 package itemlease;
 
+import itemlease.renderer.HtmlStatementRenderer;
+import itemlease.renderer.TextStatementRenderer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,5 +36,23 @@ public class CustomerTest {
 
         // use text statement renderer
         assertEquals(expected, customer.statement(new TextStatementRenderer()));
+    }
+
+    @Test
+    public void testHtmlStatement() {
+        String expected = "<h1>Games leased by <em>Bob</em></h1>\n" +
+                "<table>\n" +
+                "  <tr><td>Call Of Duty</td><td>2.0</td></tr>\n" +
+                "  <tr><td>Golden Eye</td><td>3.5</td></tr>\n" +
+                "  <tr><td>Short New</td><td>3.0</td></tr>\n" +
+                "  <tr><td>Long New</td><td>6.0</td></tr>\n" +
+                "  <tr><td>Super Mario</td><td>1.5</td></tr>\n" +
+                "  <tr><td>Threes</td><td>3.0</td></tr>\n" +
+                "</table>\n" +
+                "<p>Amount is <em>19.0</em></p>\n" +
+                "<p>You earned <em>7</em> loyalty points</p>";
+
+        // use html statement renderer
+        assertEquals(expected, customer.statement(new HtmlStatementRenderer()));
     }
 }

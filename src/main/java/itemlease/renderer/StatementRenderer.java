@@ -1,4 +1,4 @@
-package itemlease;
+package itemlease.renderer;
 
 /**
  * The StatementRenderer interface defines a rendering method for generating statements

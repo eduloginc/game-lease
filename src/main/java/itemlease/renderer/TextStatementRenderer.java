@@ -1,4 +1,6 @@
-package itemlease;
+package itemlease.renderer;
+
+import itemlease.Lease;
 
 /**
  * The TextStatementRenderer class implements the StatementRenderer interface
