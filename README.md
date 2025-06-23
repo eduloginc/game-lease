@@ -1,5 +1,5 @@
 # Rules of engagement
-**Please fork this repository to your own GitHub account, implement your solution in your fork, and submit a Pull Request against the main branch of this repository.**
+**Please submit your solution as a compressed archive containing all relevant files by replying directly to the invitation email.**
 
 # Game Lease
 
