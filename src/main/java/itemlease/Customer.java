@@ -1,6 +1,7 @@
 package itemlease;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Customer {
@@ -21,7 +22,7 @@ public class Customer {
     }
 
     public String statement() {
-        double totalAmount = 0;
+        double t = 0;
         int nbLoyaltyPoints = 0;
         String result = "Games leased by " + getName() + "\n";
 
@@ -53,11 +54,11 @@ public class Customer {
 
             // show figures for this lease
             result += "\t" + each.getGame().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
-            totalAmount += thisAmount;
+            t += thisAmount;
         }
 
         // add footer lines
-        result += "Amount is " + String.valueOf(totalAmount) + "\n";
+        result += "Amount is " + String.valueOf(t) + "\n";
         result += "You earned " + String.valueOf(nbLoyaltyPoints) + " loyalty points";
 
         return result;
