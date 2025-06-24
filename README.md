@@ -41,7 +41,3 @@ Unit tests can be run using maven[1]:
 
 Tests are located in the test directory and run using Junit.
 
-## Reviewers
-
-You can find some clues of what is expected on 
-[confluence page](https://karrostech.atlassian.net/wiki/pages/resumedraft.action?draftId=4512448542&draftShareId=84056b40-c226-47d9-b8f7-de8b72e3af7a)
